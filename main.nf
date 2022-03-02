@@ -62,4 +62,40 @@ workflow {
  */
 workflow.onComplete {
 	log.info ( workflow.success ? "\nDone! Open the following report in your browser --> $params.outdir/multiqc_report.html\n" : "Oops .. something went wrong" )
+    println """\
+    Pipeline execution summary
+    ---------------------------
+    Script Id   : ${workflow.scriptId}
+    ScriptName  : ${workflow.scriptName}
+    Scriptfile  : ${workflow.scriptFile}
+    Repsoitory  : ${workflow.repository}
+    Commit ID   : ${workflow.commitId}
+    Revision    : ${workflow.revision}
+    ProjectDir  : ${workflow.projectDir}
+    LaunchDir   : ${workflow.launchDir}
+    Workdir     : ${workflow.workDir}
+    Homedir     : ${workflow.homeDir}
+    userName    : ${workflow.userName}
+    Config files : ${workflow.configFiles}
+    Docker image : ${workflow.container}
+    Container Engine  : ${workflow.containerEngine}
+    commandline : ${workflow.commandLine}
+    profile     : ${workflow.profile}
+    Run name    : ${workflow.runName}
+    session Id  : ${workflow.sessionId}
+    Resume      : ${workflow.resume}
+    Stub-RUn Execution : ${workflow.stubRun}
+    Start Time  : ${workflow.start}
+    Manifest    : ${workflow.manifest}
+    Completed at: ${workflow.complete}
+    Duration    : ${workflow.duration}
+    Success     : ${workflow.success}
+    workDir     : ${workflow.workDir}
+    exit status : ${workflow.exitStatus}
+    Error report: ${workflow.errorReport ?: '-'}
+
+    """
+    .stripIndent()
+    
+    
 }
